@@ -7,7 +7,7 @@ export async function createBootcampersTable() {
   return await pool.query(
     `CREATE TABLE IF NOT EXISTS bootcampers (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      name VARCHAR(30) NOT NULL
+      name VARCHAR(50) NOT NULL
     );`
   );
 }
