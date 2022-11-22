@@ -3,34 +3,34 @@
 import { pool } from "./index.js";
 import { seedData } from "./seed-data.js";
 
-export async function createUsersTable() {
+export async function createBootcampersTable() {
   return await pool.query(
-    `CREATE TABLE IF NOT EXISTS users (
+    `CREATE TABLE IF NOT EXISTS bootcampers (
       id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      username VARCHAR(30) NOT NULL
+      name VARCHAR(30) NOT NULL
     );`
   );
 }
 
-export async function dropUsersTable() {
-  return await pool.query("DROP TABLE IF EXISTS users;");
+export async function dropBootcampersTable() {
+  return await pool.query("DROP TABLE IF EXISTS bootcampers;");
 }
 
-export async function resetUsersTable() {
+export async function resetBootcampersTable() {
   return [
-    await dropUsersTable(),
-    await createUsersTable(),
-    await seedUsersTable(),
+    await dropBootcampersTable(),
+    await createBootcampersTable(),
+    await seedBootcampersTable(),
   ];
 }
 
-export async function seedUsersTable() {
+export async function seedBootcampersTable() {
   return await pool.query(
-    `INSERT INTO users (
-      username
+    `INSERT INTO bootcampers (
+      name
     ) (
-      SELECT username
-      FROM json_populate_recordset(NULL::users, $1::JSON)
+      SELECT name
+      FROM json_populate_recordset(NULL::bootcampers, $1::JSON)
     );`,
     [JSON.stringify(seedData)]
   );
