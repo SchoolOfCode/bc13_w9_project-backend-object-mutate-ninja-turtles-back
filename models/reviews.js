@@ -20,4 +20,5 @@ export async function addReview(score, date) {
 
 export async function updateReview(id, score) {
   const result = await pool.query(`UPDATE reviews SET score = ${score}`);
+  return result.rows[0];
 }
