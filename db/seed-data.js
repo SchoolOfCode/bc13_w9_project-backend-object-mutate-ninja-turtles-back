@@ -7,3 +7,8 @@ export const seedData = [
   { name: "Jennifer" },
   { name: "Michael" },
 ];
+
+export const seedTopics = [
+  { subject_title: "Javascript"},
+  { subject_title: "SQL"}
+]
