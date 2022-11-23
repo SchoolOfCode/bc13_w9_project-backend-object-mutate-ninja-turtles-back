@@ -66,9 +66,9 @@ export async function resetTopicsTable() {
 export async function seedTopicsTable() {
   return await pool.query(
     `INSERT INTO topics (
-      subject_title
+      subject_title, bootcamper_id, date_added, resources, image_src
     ) (
-      SELECT subject_title
+      SELECT subject_title, bootcamper_id, date_added, resources, image_src
       FROM json_populate_recordset(NULL::topics, $1::JSON)
     );`,
     [JSON.stringify(seedTopics)]
@@ -104,11 +104,27 @@ export async function resetReviewsTable() {
 export async function seedReviewsTable() {
   return await pool.query(
     `INSERT INTO reviews (
-      score
+      topic_id, score, date_added, bootcamper_id
     ) (
-      SELECT score
+      SELECT topic_id, score, date_added, bootcamper_id
       FROM json_populate_recordset(NULL::reviews, $1::JSON)
     );`,
     [JSON.stringify(seedReviews)]
   );
+}
+
+// Reset ALL tables 
+
+export async function resetAllTables() {
+  return [
+    await dropReviewsTable(),
+    await dropTopicsTable(),
+    await dropBootcampersTable(),
+    await createBootcampersTable(),
+    await createTopicsTable(),
+    await createReviewsTable(),
+    await seedBootcampersTable(),
+    await seedTopicsTable(),
+    await seedReviewsTable(),
+  ];
 }
