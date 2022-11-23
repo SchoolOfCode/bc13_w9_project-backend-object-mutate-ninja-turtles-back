@@ -6,8 +6,9 @@ export async function getTopics() {
 }
 
 export async function getTopicByTitle(title) {
-  const result = await pool.query(`SELECT * FROM topics WHERE title = $1`, [
-    title,
-  ]);
+  const result = await pool.query(
+    `SELECT * FROM topics WHERE subject_title = $1`,
+    [title]
+  );
   return result.rows[0];
 }
