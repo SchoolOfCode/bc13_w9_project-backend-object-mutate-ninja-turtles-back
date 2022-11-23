@@ -25,7 +25,7 @@ test('GET /api/topics - gets all of the topics', async () => {
   });
 });
 
-test.only('GET /api/topics/SQL - gets SQL from topics list', async () => {
+test('GET /api/topics/SQL - gets SQL from topics list', async () => {
   // simulate a request object
   const response = await request.get('/api/topics/SQL');
   // check the server status (200)
