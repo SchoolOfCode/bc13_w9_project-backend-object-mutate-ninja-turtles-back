@@ -10,5 +10,13 @@ export const seedData = [
 
 export const seedTopics = [
   { subject_title: "Javascript"},
-  { subject_title: "SQL"}
+  { subject_title: "SQL"},
+]
+
+export const seedReviews = [
+  { score: 1 },
+  { score: 1 },
+  { score: 1 },
+  { score: 1 },
+  { score: 1 },
 ]

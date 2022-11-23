@@ -1,5 +1,4 @@
-import { createBootcampersTable } from "../helpers.js";
-import { createTopicsTable } from "../helpers.js";
+import { createBootcampersTable, createTopicsTable, createReviewsTable } from "../helpers.js";
 
 import { pool } from "../index.js";
 
@@ -8,6 +7,8 @@ try {
   console.log("Created 'bootcampers' table");
   await createTopicsTable();
   console.log("Created 'Topics' table");
+  await createReviewsTable();
+  console.log("Created 'Reviews' table");
 } catch (err) {
   console.error(err);
 } finally {

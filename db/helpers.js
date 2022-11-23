@@ -1,7 +1,7 @@
 
 
 import { pool } from "./index.js";
-import { seedData, seedTopics } from "./seed-data.js";
+import { seedData, seedTopics, seedReviews } from "./seed-data.js";
 
 export async function createBootcampersTable() {
   return await pool.query(
@@ -72,5 +72,43 @@ export async function seedTopicsTable() {
       FROM json_populate_recordset(NULL::topics, $1::JSON)
     );`,
     [JSON.stringify(seedTopics)]
+  );
+}
+
+// Reviews Table below
+
+export async function createReviewsTable() {
+  return await pool.query(
+    `CREATE TABLE IF NOT EXISTS reviews (
+      id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+     topic_id INTEGER REFERENCES topics(id),
+     score INTEGER,
+     date_added DATE,
+     bootcamper_id INTEGER REFERENCES bootcampers(id)
+     );`
+  );
+}
+
+export async function dropReviewsTable() {
+  return await pool.query("DROP TABLE IF EXISTS reviews;");
+}
+
+export async function resetReviewsTable() {
+  return [
+    await dropReviewsTable(),
+    await createReviewsTable(),
+    await seedReviewsTable(),
+  ];
+}
+
+export async function seedReviewsTable() {
+  return await pool.query(
+    `INSERT INTO reviews (
+      score
+    ) (
+      SELECT score
+      FROM json_populate_recordset(NULL::reviews, $1::JSON)
+    );`,
+    [JSON.stringify(seedReviews)]
   );
 }
