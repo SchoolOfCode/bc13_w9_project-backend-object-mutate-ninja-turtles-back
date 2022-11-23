@@ -19,3 +19,5 @@ export async function addNewBootcamper(name) {
   );
   return result.rows[0];
 }
+
+export async function name(params) {}
