@@ -1,7 +1,9 @@
-import { dropBootcampersTable, dropTopicsTable } from "../helpers.js";
+import { dropBootcampersTable, dropTopicsTable, dropReviewsTable } from "../helpers.js";
 import { pool } from "../index.js";
 
 try {
+  await dropReviewsTable();
+  console.log("Dropped 'reviews' table");
   await dropTopicsTable();
   console.log("Dropped 'topics' table");
   await dropBootcampersTable();
