@@ -21,7 +21,7 @@ import { bootcampersRouter } from './routes/bootcampers.js';
 import { reviewsRouter } from './routes/reviews.js';
 
 const app = Express();
-const PORT = process.env.port || 3000;
+const PORT = process.env.port || 3001;
 
 app.use(Morgan('dev'));
 app.use(Express.json());
