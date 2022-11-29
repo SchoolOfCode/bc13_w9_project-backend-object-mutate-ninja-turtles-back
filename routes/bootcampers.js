@@ -1,16 +1,13 @@
 import express from 'express';
 const router = express.Router();
 import {
-  getBootcampers,
+  getBootcamperDataById,
   getBootcamperByName,
   addNewBootcamper,
 } from '../models/bootcampers.js';
 
-//IMPORTANT: The GET '/' for bootcampers endpoint currently gets all topics and reviews 
-//for bootcamper 1 - ie: NOT what you would expect it to do initially! 
-// This is so that we have an initial endpoint to work with for connecting front and back end.
 router.get('/', async function (req, res) {
-  const result = await getBootcampers();
+  const result = await getBootcamperDataById();
   res.json({ success: true, payload: result });
 });
 

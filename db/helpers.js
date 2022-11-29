@@ -114,7 +114,6 @@ export async function seedReviewsTable() {
 }
 
 // Reset ALL tables 
-
 export async function resetAllTables() {
   return [
     await dropReviewsTable(),

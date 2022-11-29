@@ -1,6 +1,6 @@
 import { pool } from '../db/index.js';
 
-export async function getBootcampers() {
+export async function getBootcamperDataById() {
   const result = await pool.query('SELECT * FROM topics LEFT JOIN reviews ON topics.bootcamper_id = reviews.bootcamper_id;');
   return result.rows;
 }
